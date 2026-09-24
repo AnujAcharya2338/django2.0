@@ -12,4 +12,3 @@ class EmployeeSerializers(serializers.ModelSerializer):
         model = Employee
         fields = '__all__'
 
-    
