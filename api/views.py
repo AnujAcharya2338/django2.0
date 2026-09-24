@@ -88,8 +88,11 @@ def studentdetailview(request, pk):
 #         employee.delete()
 #         return Response(status=status.HTTP_203_NON_AUTHORITATIVE_INFORMATION)
 
-           
-      
+ 
+"""          
+//mixins
+
+
 class Employees(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):  
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializers
@@ -114,8 +117,18 @@ class Employeedetailview(mixins.RetrieveModelMixin,mixins.UpdateModelMixin,mixin
     def delete(self,request,pk):
         return self.destroy(request, pk)
         
+"""
 
+# // Generics
 
+class Employees(generics.ListCreateAPIView):
+    queryset = Employee.objects.all()
+    serializer_class = EmployeeSerializers
+
+class Employeedetailview(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Employee.objects.all()
+    serializer_class = EmployeeSerializers
+    lookup_field = 'pk'
         
         
 
